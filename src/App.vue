@@ -1,25 +1,20 @@
 <template>
   <div id="app">
-    <RegisterForm />
+    <HeaderMenu />
+    <router-view />
   </div>
 </template>
 
 <script>
-  import RegisterForm from './components/RegisterForm.vue'
+import HeaderMenu from './components/HeaderMenu.vue'
 
   export default {
     components: {
-      RegisterForm
+      HeaderMenu
     }
   }
 </script>
 
 <style>
-
-#app {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 </style>

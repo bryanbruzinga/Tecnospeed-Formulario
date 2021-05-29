@@ -28,7 +28,7 @@
       type="text"
       label="CNPJ *"
       name="cnpj"
-      validation="required|max:14"
+      validation="required|min:14"
       v-model="cnpj"
     />
 
@@ -104,34 +104,28 @@
       v-model="bairro"
     />
 
-    <FormulateInput
-      type="select"
-      label="Estado *"
-      name="estado"
-      validation="required"
-      :options="[{value: estados, label: estados}]"
-      v-model="estado"
-    />
+    <select v-model="estado" :change="puxarCidades(estado)">
+        <option  v-for="estado in estados" :value="estado" :key="estado">{{estado}}</option>
+    </select>  
 
-    <FormulateInput
-      type="text"
-      label="Cidade *"
-      name="cidade"
-      validation="required|min:3"
-      v-model="cidade"
-    />
+    <select v-model="cidade">
+        <option v-for="cidade in cidades" :value="cidade" :key="cidade">{{cidade}}</option>
+    </select>   
+
+    
   </form>
 </template>
 
 <script>
-import { getCep } from "@/services.js";
+import { getCep, getStates, getCities } from "@/services.js";
 import { mapFields } from "@/helpers.js";
 
 export default {
   name: "registerForm",
   data() {
       return {
-          estados: 'alecrim'
+          estados: [],
+          cidades: []
       }
   },
   computed: {
@@ -158,23 +152,35 @@ export default {
     }),
   },
   methods: {
+      puxarEstados() {
+          getStates().then(r => r.data.map(item => {
+              this.estados.push(item.sigla)
+              this.estados.sort()
+          }))
+      },
+      puxarCidades(estado) {
+          getCities(estado).then(r => r.data.map(item => {
+              this.cidades.push(item.nome)
+              this.cidades.sort()
+          }))
+      },
     preencherCep() {
       const cep = this.cep.replace(/\D/g, "");
       if (cep?.length === 8) {
         getCep(cep).then((response) => {
           this.endereco = response.data.logradouro;
           this.bairro = response.data.bairro;
-          this.uf = response.data.uf;
+          this.estado = response.data.uf;
           this.cidade = response.data.localidade;
         });
       }
     },
   },
+  mounted() {
+      this.puxarEstados()
+  }
 };
 </script>
 
 <style scoped>
-form {
-  margin: 0 auto;
-}
 </style>
