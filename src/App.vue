@@ -15,4 +15,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+:root {
+  --primary-font: "Open Sans", sans-serif;
+}
+</style>

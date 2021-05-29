@@ -104,17 +104,25 @@
       v-model="bairro"
     />
 
-    <select v-model="estado" :change="puxarCidades(estado)">
-      <option v-for="estado in estados" :value="estado" :key="estado">{{
-        estado
-      }}</option>
-    </select>
+    <FormulateInput
+      type="select"
+      label="Estado *"
+      name="estado"
+      validation="required"
+      :change="puxarCidades(estado)"
+      :options="estados.map((value) => ({ label: value, value }))"
+      v-model="estado"
+    />
 
-    <select v-model="cidade">
-      <option v-for="cidade in cidades" :value="cidade" :key="cidade">{{
-        cidade
-      }}</option>
-    </select>
+    <FormulateInput
+      type="select"
+      label="Cidade *"
+      name="cidade"
+      validation="required"
+      :change="puxarCidades(estado)"
+      :options="cidades.map((value) => ({ label: value, value }))"
+      v-model="cidade"
+    />
   </form>
 </template>
 
@@ -188,4 +196,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+form {
+  border: 1px solid #ccc;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>

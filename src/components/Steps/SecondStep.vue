@@ -47,7 +47,7 @@
         type="checkbox"
         label="Formas comercialização ERP *"
         name="formasComercioERP"
-        :options="['Locação', 'Vendas', 'Uso Interno', 'Outro', 'Nnehuma']"
+        :options="['Locação', 'Vendas', 'Uso Interno', 'Outro', 'Nenhuma']"
         validation="required"
       />
 
@@ -81,4 +81,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.wizard-header {
+  display: none;
+}
+</style>
