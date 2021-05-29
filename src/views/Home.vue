@@ -1,16 +1,18 @@
 <template>
   <form-wizard
+    stepSize="xs"
+    shape="square"
     nextButtonText="Próximo"
     backButtonText="Voltar"
     finishButtonText="Finalizar"
-    color="#13A9E1"
+    color="var(--primary-color)"
   >
-    <tab-content title="Dados da organização" icon="ti-user">
+    <tab-content title="Dados da organização">
       <FirstStep />
     </tab-content>
 
     <tab-content title="Informações adicionais da organização">
-      <secondStep />
+      <SecondStep />
     </tab-content>
 
     <tab-content title="Dados do representante legal">
@@ -29,7 +31,7 @@
 
 <script>
 import FirstStep from "../components/Steps/FirstStep.vue";
-import secondStep from "../components/Steps/SecondStep.vue";
+import SecondStep from "../components/Steps/SecondStep.vue";
 import ThirdStep from "../components/Steps/ThirdStep.vue";
 import FourthStep from "../components/Steps/FourthStep.vue";
 import FifthStep from "../components/Steps/FifthStep.vue";
@@ -38,7 +40,7 @@ export default {
   name: "home",
   components: {
     FirstStep,
-    secondStep,
+    SecondStep,
     ThirdStep,
     FourthStep,
     FifthStep,
@@ -47,6 +49,9 @@ export default {
 </script>
 
 <style>
+form {
+  padding: 1rem 0;
+}
 .wizard-tab-content {
   display: flex;
   align-items: center;

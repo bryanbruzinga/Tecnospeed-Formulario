@@ -115,12 +115,10 @@
     />
 
     <FormulateInput
-      type="select"
+      type="text"
       label="Cidade *"
       name="cidade"
-      validation="required"
-      :change="puxarCidades(estado)"
-      :options="cidades.map((value) => ({ label: value, value }))"
+      validation="required|min:3"
       v-model="cidade"
     />
   </form>
@@ -203,5 +201,21 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.formulate-input {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formulate-input-wrapper {
+  display: flex;
+}
+
+.formulate-input-wrapper label {
+  margin-right: 1rem;
+  justify-self: flex-start;
 }
 </style>

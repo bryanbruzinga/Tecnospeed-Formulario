@@ -18,5 +18,6 @@ export default {
 <style>
 :root {
   --primary-font: "Open Sans", sans-serif;
+  --primary-color: #13a9e1;
 }
 </style>
