@@ -6,15 +6,13 @@
 </template>
 
 <script>
-import HeaderMenu from './components/HeaderMenu.vue'
+import HeaderMenu from "./components/HeaderMenu.vue";
 
-  export default {
-    components: {
-      HeaderMenu
-    }
-  }
+export default {
+  components: {
+    HeaderMenu,
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -105,14 +105,16 @@
     />
 
     <select v-model="estado" :change="puxarCidades(estado)">
-        <option  v-for="estado in estados" :value="estado" :key="estado">{{estado}}</option>
-    </select>  
+      <option v-for="estado in estados" :value="estado" :key="estado">{{
+        estado
+      }}</option>
+    </select>
 
     <select v-model="cidade">
-        <option v-for="cidade in cidades" :value="cidade" :key="cidade">{{cidade}}</option>
-    </select>   
-
-    
+      <option v-for="cidade in cidades" :value="cidade" :key="cidade">{{
+        cidade
+      }}</option>
+    </select>
   </form>
 </template>
 
@@ -121,12 +123,12 @@ import { getCep, getStates, getCities } from "@/services.js";
 import { mapFields } from "@/helpers.js";
 
 export default {
-  name: "registerForm",
+  name: "firstStep",
   data() {
-      return {
-          estados: [],
-          cidades: []
-      }
+    return {
+      estados: [],
+      cidades: [],
+    };
   },
   computed: {
     ...mapFields({
@@ -152,18 +154,22 @@ export default {
     }),
   },
   methods: {
-      puxarEstados() {
-          getStates().then(r => r.data.map(item => {
-              this.estados.push(item.sigla)
-              this.estados.sort()
-          }))
-      },
-      puxarCidades(estado) {
-          getCities(estado).then(r => r.data.map(item => {
-              this.cidades.push(item.nome)
-              this.cidades.sort()
-          }))
-      },
+    puxarEstados() {
+      getStates().then((r) =>
+        r.data.map((item) => {
+          this.estados.push(item.sigla);
+          this.estados.sort();
+        })
+      );
+    },
+    puxarCidades(estado) {
+      getCities(estado).then((r) =>
+        r.data.map((item) => {
+          this.cidades.push(item.nome);
+          this.cidades.sort();
+        })
+      );
+    },
     preencherCep() {
       const cep = this.cep.replace(/\D/g, "");
       if (cep?.length === 8) {
@@ -177,10 +183,9 @@ export default {
     },
   },
   mounted() {
-      this.puxarEstados()
-  }
+    this.puxarEstados();
+  },
 };
 </script>
 
-<style scoped>
-</style>
+<style></style>
