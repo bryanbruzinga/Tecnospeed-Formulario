@@ -7,7 +7,10 @@
     finishButtonText="Finalizar"
     color="var(--primary-color)"
   >
-    <tab-content title="Dados da organização">
+    <tab-content
+      title="Dados da organização"
+      :before-change="() => validateStep('firstStep')"
+    >
       <FirstStep />
     </tab-content>
 
@@ -45,16 +48,42 @@ export default {
     FourthStep,
     FifthStep,
   },
+  methods: {
+    validateStep(step) {
+      if (this.$refs[step].$v.formFields.$invalid === true) {
+        return false;
+      }
+    },
+  },
 };
 </script>
 
 <style>
 form {
-  padding: 1rem 0;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  width: 50vw;
 }
+
+form .formulate-input {
+  margin-bottom: 0.875rem;
+}
+
 .wizard-tab-content {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.vue-form-wizard {
+  width: 50vw;
+  margin: 0 auto;
+}
+
+.wizard-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 }
 </style>

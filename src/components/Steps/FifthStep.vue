@@ -9,6 +9,9 @@
         name="vencimento"
         validation="required"
         v-model="vencimento"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+        }"
       />
 
       <FormulateInput
@@ -24,36 +27,59 @@
         type="text"
         label="Nome Completo *"
         name="nomeAdmin"
-        validation="required"
+        validation="required|min:3"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min: 'Nome deve conter ao menos 3 letras.',
+        }"
       />
 
       <FormulateInput
         type="email"
         label="Email *"
         validation="required"
-        name="emailAdmin"
+        name="emailAdmin|min:3|email"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min: 'Email deve conter ao menos 3 letras.',
+        }"
       />
 
       <FormulateInput
         type="password"
         label="Senha *"
         validation="required"
-        name="senhaAdmin"
+        name="senhaAdmin|min:6"
+        :validation-messages="{
+          required: 'Campo obrigatório..',
+          min:
+            'Senha deve conter ao menos 6 letras, números ou caractéres especiais.',
+        }"
       />
 
       <FormulateInput
         type="password"
         label="Confirme a senha *"
         validation="required"
-        name="senhaAdmin"
+        name="senhaAdmin|min:6"
+        :validation-messages="{
+          required: 'Campo obrigatório..',
+          min:
+            'Senha deve conter ao menos 6 letras, números ou caractéres especiais.',
+        }"
       />
 
       <FormulateInput
         type="text"
         label="Celular *"
         placeholder="(00) 0000-0000"
-        validation="required"
+        validation="required|min:8|number"
         name="celular"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min: 'Celular inválido.',
+          number: 'Somente números',
+        }"
       />
     </div>
   </form>

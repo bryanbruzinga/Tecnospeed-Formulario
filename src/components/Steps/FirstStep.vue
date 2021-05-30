@@ -14,6 +14,10 @@
       name="razaoSocial"
       validation="required|min:3"
       v-model="razaoSocial"
+      :validation-messages="{
+        required: 'Campo obrigatório.',
+        min: 'Campo deve conter ao menos 3 letras.',
+      }"
     />
 
     <FormulateInput
@@ -22,6 +26,10 @@
       name="nomeFantasia"
       validation="required|min:3"
       v-model="nomeFantasia"
+      :validation-messages="{
+        required: 'Campo obrigatório.',
+        min: 'Campo deve conter ao menos 3 letras.',
+      }"
     />
 
     <FormulateInput
@@ -30,6 +38,10 @@
       name="cnpj"
       validation="required|min:14"
       v-model="cnpj"
+      :validation-messages="{
+        required: 'Campo obrigatório.',
+        min: 'Campo deve conter ao menos 14 números.',
+      }"
     />
 
     <FormulateInput
@@ -38,6 +50,11 @@
       name="inscricaoEstadual"
       validation="required|min:3"
       v-model="inscricaoEstadual"
+      validation-name="Inscrição Estadual"
+      :validation-messages="{
+        required: 'Campo obrigatório.',
+        min: 'Campo deve conter ao menos 3 letras.',
+      }"
     />
 
     <FormulateInput type="checkbox" label="Isento" v-model="isento" />
@@ -46,8 +63,13 @@
       type="text"
       label="Telefone *"
       name="telefone"
-      validation="required|min:10"
+      validation="required|min:10|number"
       v-model="telefone"
+      :validation-messages="{
+        required: 'Campo obrigatório.',
+        min: 'Telefone Inválido.',
+        number: 'Somente números',
+      }"
     />
 
     <FormulateInput
@@ -61,15 +83,23 @@
       name="tipoEmpresa"
       validation="required"
       v-model="tipoEmpresa"
+      :validation-messages="{
+        required: 'Campo obrigatório.',
+      }"
     />
 
     <FormulateInput
       type="text"
       label="CEP *"
       name="cep"
-      validation="required|min:8"
+      validation="required|min:8|number"
       @keyup="preencherCep"
       v-model="cep"
+      :validation-messages="{
+        required: 'Campo obrigatório.',
+        min: 'Cep inválido.',
+        number: 'Somente números',
+      }"
     />
 
     <FormulateInput
@@ -78,6 +108,10 @@
       name="endereco"
       validation="required|min:3"
       v-model="endereco"
+      :validation-messages="{
+        required: 'Campo obrigatório.',
+        min: 'Endereço inválido.',
+      }"
     />
 
     <FormulateInput
@@ -86,6 +120,9 @@
       name="numero"
       validation="required"
       v-model="numero"
+      :validation-messages="{
+        required: 'Campo obrigatório.',
+      }"
     />
 
     <FormulateInput
@@ -94,6 +131,9 @@
       name="complemento"
       validation="min:3"
       v-model="complemento"
+      :validation-messages="{
+        min: 'Campo deve conter ao menos 3 letras.',
+      }"
     />
 
     <FormulateInput
@@ -102,6 +142,10 @@
       name="bairro"
       validation="required|min:3"
       v-model="bairro"
+      :validation-messages="{
+        required: 'Campo obrigatório.',
+        min: 'Bairro inválido.',
+      }"
     />
 
     <FormulateInput
@@ -112,6 +156,9 @@
       :change="puxarCidades(estado)"
       :options="estados.map((value) => ({ label: value, value }))"
       v-model="estado"
+      :validation-messages="{
+        required: 'Campo obrigatório.',
+      }"
     />
 
     <FormulateInput
@@ -120,6 +167,10 @@
       name="cidade"
       validation="required|min:3"
       v-model="cidade"
+      :validation-messages="{
+        required: 'Campo obrigatório.',
+        min: 'Cidade inválida.',
+      }"
     />
   </form>
 </template>
@@ -194,28 +245,4 @@ export default {
 };
 </script>
 
-<style>
-form {
-  border: 1px solid #ccc;
-  width: 50vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.formulate-input {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.formulate-input-wrapper {
-  display: flex;
-}
-
-.formulate-input-wrapper label {
-  margin-right: 1rem;
-  justify-self: flex-start;
-}
-</style>
+<style></style>

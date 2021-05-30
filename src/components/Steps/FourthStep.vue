@@ -6,36 +6,59 @@
         type="text"
         label="Nome Completo *"
         name="nomeAdmin"
-        validation="required"
+        validation="required|min:3"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min: 'Nome deve conter ao menos 3 letras.',
+        }"
       />
 
       <FormulateInput
         type="email"
         label="Email *"
-        validation="required"
+        validation="required|min:3|email"
         name="emailAdmin"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min: 'Email inválido.',
+        }"
       />
 
       <FormulateInput
         type="password"
         label="Senha *"
-        validation="required"
+        validation="required|min:6"
         name="senhaAdmin"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min:
+            'Senha deve conter ao menos 6 letras, números ou caractéres especiais.',
+        }"
       />
 
       <FormulateInput
         type="password"
         label="Confirme a senha *"
-        validation="required"
+        validation="required|min:6"
         name="senhaAdmin"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min:
+            'Senha deve conter ao menos 6 letras, números ou caracteres especiais.',
+        }"
       />
 
       <FormulateInput
         type="text"
         label="Telefone *"
         placeholder="(00) 0000-0000"
-        validation="required"
+        validation="required|min:8|number"
         name="telefoneAdmin"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min: 'Telefone inválido.',
+          number: 'Somente números',
+        }"
       />
     </div>
 
@@ -54,36 +77,59 @@
         type="text"
         label="Nome Completo *"
         name="nomeTecnico"
-        validation="required"
+        validation="required|min:3"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min: 'Nome deve conter ao menos 3 letras.',
+        }"
       />
 
       <FormulateInput
         type="email"
         label="Email *"
-        validation="required"
+        validation="required|min:3|email"
         name="emailTecnico"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min: 'Email deve conter ao menos 3 letras.',
+        }"
       />
 
       <FormulateInput
         type="password"
         label="Senha *"
-        validation="required"
+        validation="required|min:6"
         name="senhaTecnico"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min:
+            'Senha deve conter ao menos 6 letras, números ou caractéres especiais.',
+        }"
       />
 
       <FormulateInput
         type="password"
         label="Confirme a senha *"
-        validation="required"
+        validation="required|min:6"
         name="senhaTecnico"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min:
+            'Senha deve conter ao menos 6 letras, números ou caractéres especiais.',
+        }"
       />
 
       <FormulateInput
         type="text"
         label="Telefone *"
         placeholder="(00) 0000-0000"
-        validation="required"
+        validation="required|min:8|number"
         name="telefoneTecnico"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min: 'Telefone inválido.',
+          number: 'Somente números',
+        }"
       />
     </div>
   </form>

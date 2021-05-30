@@ -19,6 +19,9 @@
         ]"
         name="linguagensProgramacao"
         validation="required"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+        }"
       />
 
       <FormulateInput
@@ -33,6 +36,9 @@
         name="ramoAtividade"
         :options="['Varejo', 'Industria', 'Comércio', 'Transporte', 'Serviço']"
         validation="required"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+        }"
       />
 
       <FormulateInput
@@ -41,6 +47,9 @@
         name="estadosDosClientes"
         :options="['Todos']"
         validation="required"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+        }"
       />
 
       <FormulateInput
@@ -49,6 +58,9 @@
         name="formasComercioERP"
         :options="['Locação', 'Vendas', 'Uso Interno', 'Outro', 'Nenhuma']"
         validation="required"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+        }"
       />
 
       <FormulateInput type="text" name="outrasFormasComercioERP" />
@@ -64,6 +76,9 @@
         label="Quantidade de clientes *"
         name="quantidadeClientes"
         validation="required"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+        }"
       />
 
       <FormulateInput
