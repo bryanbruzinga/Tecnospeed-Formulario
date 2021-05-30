@@ -19,6 +19,7 @@
         ]"
         name="linguagensProgramacao"
         validation="required"
+        v-model="linguagens"
         :validation-messages="{
           required: 'Campo obrigatório.',
         }"
@@ -28,6 +29,8 @@
         type="text"
         placeholder="Separe as linguagens por vírgula. Ex: Go, Lua, .NET"
         name="outrasLinguagens"
+        v-model="outrasLinguagens"
+        :disabled="linguagens.includes('Outras') ? false : true"
       />
 
       <FormulateInput
@@ -36,9 +39,8 @@
         name="ramoAtividade"
         :options="['Varejo', 'Industria', 'Comércio', 'Transporte', 'Serviço']"
         validation="required"
-        :validation-messages="{
-          required: 'Campo obrigatório.',
-        }"
+        v-model="ramoAtividade"
+        :validation-messages="{ required: 'Campo obrigatório.' }"
       />
 
       <FormulateInput
@@ -47,6 +49,7 @@
         name="estadosDosClientes"
         :options="['Todos']"
         validation="required"
+        v-model="estadosCliente"
         :validation-messages="{
           required: 'Campo obrigatório.',
         }"
@@ -58,26 +61,35 @@
         name="formasComercioERP"
         :options="['Locação', 'Vendas', 'Uso Interno', 'Outro', 'Nenhuma']"
         validation="required"
+        v-model="formasComercioERP"
         :validation-messages="{
           required: 'Campo obrigatório.',
         }"
       />
 
-      <FormulateInput type="text" name="outrasFormasComercioERP" />
+      <FormulateInput
+        type="text"
+        name="outrasFormasComercioERP"
+        v-model="outrasFormasComercioERP"
+        :disabled="formasComercioERP.includes('Outro') ? false : true"
+      />
 
       <FormulateInput
         type="text"
         label="Principais clientes"
         name="principaisClientes"
+        v-model="principaisClientes"
       />
 
       <FormulateInput
         type="number"
         label="Quantidade de clientes *"
         name="quantidadeClientes"
-        validation="required"
+        validation="required|number"
+        v-model="quantidadeClientes"
         :validation-messages="{
           required: 'Campo obrigatório.',
+          number: 'Somente números',
         }"
       />
 
@@ -85,14 +97,36 @@
         type="number"
         label="Número de funcionários *"
         name="numeroFuncionarios"
+        v-model="numeroFuncionarios"
+        validation="number"
+        :validation-messages="{ number: 'Somente números' }"
       />
     </form>
   </div>
 </template>
 
 <script>
+import { mapFields } from "@/helpers.js";
+
 export default {
   name: "secondStep",
+  computed: {
+    ...mapFields({
+      fields: [
+        "linguagens",
+        "outrasLinguagens",
+        "ramoAtividade",
+        "estadosCliente",
+        "formasComercioERP",
+        "outrasFormasComercioERP",
+        "principaisClientes",
+        "quantidadeClientes",
+        "numeroFuncionarios",
+      ],
+      base: "formFields",
+      mutation: "UPDATE_FORMFIELDS",
+    }),
+  },
 };
 </script>
 

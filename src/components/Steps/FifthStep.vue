@@ -18,15 +18,14 @@
         type="checkbox"
         name="usarDadosAdmin"
         v-model="usarDadosAdmin"
-        :options="[
-          'Desejo usar os dados do administrador para preencher estes campos.',
-        ]"
+        label="Desejo usar os dados do administrador para preencher estes campos."
       />
 
       <FormulateInput
         type="text"
         label="Nome Completo *"
-        name="nomeAdmin"
+        name="nomeResponsavelFinanceiro"
+        v-model="nomeResponsavelFinanceiro"
         validation="required|min:3"
         :validation-messages="{
           required: 'Campo obrigatório.',
@@ -37,8 +36,9 @@
       <FormulateInput
         type="email"
         label="Email *"
-        validation="required"
-        name="emailAdmin|min:3|email"
+        validation="required|min:3|email"
+        name="emailResponsavelFinanceiro"
+        v-model="emailResponsavelFinanceiro"
         :validation-messages="{
           required: 'Campo obrigatório.',
           min: 'Email deve conter ao menos 3 letras.',
@@ -48,8 +48,9 @@
       <FormulateInput
         type="password"
         label="Senha *"
-        validation="required"
-        name="senhaAdmin|min:6"
+        validation="required|min:6"
+        name="senhaResponsavelFinanceiro"
+        v-model="senhaResponsavelFinanceiro"
         :validation-messages="{
           required: 'Campo obrigatório..',
           min:
@@ -74,7 +75,8 @@
         label="Celular *"
         placeholder="(00) 0000-0000"
         validation="required|min:8|number"
-        name="celular"
+        name="celularResponsavelFinanceiro"
+        v-model="celularResponsavelFinanceiro"
         :validation-messages="{
           required: 'Campo obrigatório.',
           min: 'Celular inválido.',
@@ -86,8 +88,23 @@
 </template>
 
 <script>
+import { mapFields } from "@/helpers.js";
+
 export default {
   name: "fifthStep",
+  computed: {
+    ...mapFields({
+      fields: [
+        "vencimento",
+        "nomeResponsavelFinanceiro",
+        "emailResponsavelFinanceiro",
+        "senhaResponsavelFinanceiro",
+        "celularResponsavelFinanceiro",
+      ],
+      base: "formFields",
+      mutation: "UPDATE_FORMFIELDS",
+    }),
+  },
 };
 </script>
 

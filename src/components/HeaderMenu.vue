@@ -2,6 +2,7 @@
   <header>
     <img src="@/assets/tecnospeed-white.svg" alt="Tecnospeed" />
     <nav>
+      <button @click="toggleMenu">Menu</button>
       <ul>
         <li>Soluções</li>
         <li>Institucional</li>
@@ -15,6 +16,16 @@
 <script>
 export default {
   name: "headerMenu",
+  data() {
+    return {
+      menuAtivo: false,
+    };
+  },
+  methods: {
+    toggleMenu() {
+      this.menuAtivo = !this.menuAtivo;
+    },
+  },
 };
 </script>
 
@@ -38,6 +49,10 @@ header ul {
   display: flex;
 }
 
+header nav button {
+  display: none;
+}
+
 header ul li {
   list-style: none;
   padding: 1rem;
@@ -49,5 +64,18 @@ header ul li {
 
 header ul li:hover {
   color: var(--textHover);
+}
+
+@media (max-width: 840px) {
+  header img {
+    height: 50px;
+    width: 100px;
+  }
+  header ul {
+    display: none;
+  }
+  header nav button {
+    display: block;
+  }
 }
 </style>

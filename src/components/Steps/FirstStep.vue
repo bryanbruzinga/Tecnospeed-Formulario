@@ -36,11 +36,12 @@
       type="text"
       label="CNPJ *"
       name="cnpj"
-      validation="required|min:14"
+      validation="required|min:14|number"
       v-model="cnpj"
       :validation-messages="{
         required: 'Campo obrigatório.',
         min: 'Campo deve conter ao menos 14 números.',
+        number: 'Somente números',
       }"
     />
 
@@ -49,6 +50,7 @@
       label="Inscrição estadual *"
       name="inscricaoEstadual"
       validation="required|min:3"
+      :disabled="isento"
       v-model="inscricaoEstadual"
       validation-name="Inscrição Estadual"
       :validation-messages="{
