@@ -1,6 +1,6 @@
 <template>
   <form>
-    <div>
+    <div class="container">
       <h2>Dados do responsável financeiro</h2>
       <FormulateInput
         type="radio"
@@ -42,6 +42,7 @@
         :validation-messages="{
           required: 'Campo obrigatório.',
           min: 'Email deve conter ao menos 3 letras.',
+          email: 'Entre com um email válido.',
         }"
       />
 
@@ -52,7 +53,7 @@
         name="senhaResponsavelFinanceiro"
         v-model="senhaResponsavelFinanceiro"
         :validation-messages="{
-          required: 'Campo obrigatório..',
+          required: 'Campo obrigatório.',
           min:
             'Senha deve conter ao menos 6 letras, números ou caractéres especiais.',
         }"
@@ -64,7 +65,7 @@
         validation="required"
         name="senhaAdmin|min:6"
         :validation-messages="{
-          required: 'Campo obrigatório..',
+          required: 'Campo obrigatório.',
           min:
             'Senha deve conter ao menos 6 letras, números ou caractéres especiais.',
         }"
@@ -80,7 +81,7 @@
         :validation-messages="{
           required: 'Campo obrigatório.',
           min: 'Celular inválido.',
-          number: 'Somente números',
+          number: 'Somente números.',
         }"
       />
     </div>
@@ -92,10 +93,19 @@ import { mapFields } from "@/helpers.js";
 
 export default {
   name: "fifthStep",
+  data() {
+    return {
+      senhaAConfirmarTecnico2: "",
+      senhaAConfirmarTecnico1: "",
+      senhaAConfirmarAdmin2: "",
+      senhaAConfirmarAdmin1: "",
+    };
+  },
   computed: {
     ...mapFields({
       fields: [
         "vencimento",
+        "usarDadosAdmin",
         "nomeResponsavelFinanceiro",
         "emailResponsavelFinanceiro",
         "senhaResponsavelFinanceiro",
@@ -105,7 +115,28 @@ export default {
       mutation: "UPDATE_FORMFIELDS",
     }),
   },
+  methods: {
+    populateTechnicianFields() {
+      if (this.usarDadosAdmin) {
+        this.nomeTecnico = this.nomeAdmin;
+        this.emailTecnico = this.emailAdmin;
+        this.senhaTecnico = this.senhaAdmin;
+        this.telefoneTecnico = this.telefoneAdmin;
+      }
+    },
+    checkPassword(senha1, senha2) {
+      if (senha1 === senha2) {
+        this.senhaAdmin = senha1;
+      }
+    },
+  },
 };
 </script>
 
-<style></style>
+<style scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>

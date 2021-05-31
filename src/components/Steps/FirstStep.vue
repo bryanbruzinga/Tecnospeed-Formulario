@@ -1,179 +1,182 @@
 <template>
   <form>
-    <FormulateInput
-      type="radio"
-      :options="{ pessoa: 'Jurídica' }"
-      label="Pessoa"
-      name="pessoa"
-      v-model="pessoa"
-    />
+    <div class="container">
+      <FormulateInput
+        type="radio"
+        :options="{ pessoa: 'Jurídica' }"
+        label="Pessoa"
+        name="pessoa"
+        v-model="pessoa"
+      />
 
-    <FormulateInput
-      type="text"
-      label="Razão social *"
-      name="razaoSocial"
-      validation="required|min:3"
-      v-model="razaoSocial"
-      :validation-messages="{
-        required: 'Campo obrigatório.',
-        min: 'Campo deve conter ao menos 3 letras.',
-      }"
-    />
+      <FormulateInput
+        type="text"
+        label="Razão social *"
+        name="razaoSocial"
+        validation="required|min:3"
+        v-model="razaoSocial"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min: 'Campo deve conter ao menos 3 letras.',
+        }"
+      />
 
-    <FormulateInput
-      type="text"
-      label="Nome fantasia *"
-      name="nomeFantasia"
-      validation="required|min:3"
-      v-model="nomeFantasia"
-      :validation-messages="{
-        required: 'Campo obrigatório.',
-        min: 'Campo deve conter ao menos 3 letras.',
-      }"
-    />
+      <FormulateInput
+        type="text"
+        label="Nome fantasia *"
+        name="nomeFantasia"
+        validation="required|min:3"
+        v-model="nomeFantasia"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min: 'Campo deve conter ao menos 3 letras.',
+        }"
+      />
 
-    <FormulateInput
-      type="text"
-      label="CNPJ *"
-      name="cnpj"
-      validation="required|min:14|number"
-      v-model="cnpj"
-      :validation-messages="{
-        required: 'Campo obrigatório.',
-        min: 'Campo deve conter ao menos 14 números.',
-        number: 'Somente números',
-      }"
-    />
+      <FormulateInput
+        type="text"
+        label="CNPJ *"
+        name="cnpj"
+        validation="required|min:14|number"
+        v-model="cnpj"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min: 'Campo deve conter ao menos 14 números.',
+          number: 'Somente números',
+        }"
+      />
 
-    <FormulateInput
-      type="text"
-      label="Inscrição estadual *"
-      name="inscricaoEstadual"
-      validation="required|min:3"
-      :disabled="isento"
-      v-model="inscricaoEstadual"
-      validation-name="Inscrição Estadual"
-      :validation-messages="{
-        required: 'Campo obrigatório.',
-        min: 'Campo deve conter ao menos 3 letras.',
-      }"
-    />
+      <FormulateInput
+        type="text"
+        label="Inscrição estadual *"
+        name="inscricaoEstadual"
+        validation="required|min:3"
+        :disabled="isento"
+        v-model="inscricaoEstadual"
+        validation-name="Inscrição Estadual"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min: 'Campo deve conter ao menos 3 letras.',
+        }"
+      />
 
-    <FormulateInput type="checkbox" label="Isento" v-model="isento" />
+      <FormulateInput type="checkbox" label="Isento" v-model="isento" />
 
-    <FormulateInput
-      type="text"
-      label="Telefone *"
-      name="telefone"
-      validation="required|min:10|number"
-      v-model="telefone"
-      :validation-messages="{
-        required: 'Campo obrigatório.',
-        min: 'Telefone Inválido.',
-        number: 'Somente números',
-      }"
-    />
+      <FormulateInput
+        type="text"
+        label="Telefone *"
+        name="telefone"
+        validation="required|min:10|number"
+        v-model="telefone"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min: 'Telefone Inválido.',
+          number: 'Somente números',
+        }"
+      />
 
-    <FormulateInput
-      type="radio"
-      :options="{
-        empresaSoftware: 'Empresa de Software',
-        representanteSoftware: 'Integrador / Representante de Software',
-        empresaOutroRamo: 'Empresa de outro ramo',
-      }"
-      label="Tipo empresa"
-      name="tipoEmpresa"
-      validation="required"
-      v-model="tipoEmpresa"
-      :validation-messages="{
-        required: 'Campo obrigatório.',
-      }"
-    />
+      <FormulateInput
+        type="radio"
+        :options="{
+          empresaSoftware: 'Empresa de Software',
+          representanteSoftware: 'Integrador / Representante de Software',
+          empresaOutroRamo: 'Empresa de outro ramo',
+        }"
+        label="Tipo empresa"
+        name="tipoEmpresa"
+        validation="required"
+        v-model="tipoEmpresa"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+        }"
+      />
 
-    <FormulateInput
-      type="text"
-      label="CEP *"
-      name="cep"
-      validation="required|min:8|number"
-      @keyup="preencherCep"
-      v-model="cep"
-      :validation-messages="{
-        required: 'Campo obrigatório.',
-        min: 'Cep inválido.',
-        number: 'Somente números',
-      }"
-    />
+      <FormulateInput
+        type="text"
+        label="CEP *"
+        name="cep"
+        validation="required|min:8|number"
+        @keyup="preencherCep"
+        v-model="cep"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min: 'Cep inválido.',
+          number: 'Somente números',
+        }"
+      />
+      <span>{{ erroCep }}</span>
 
-    <FormulateInput
-      type="text"
-      label="Endereço *"
-      name="endereco"
-      validation="required|min:3"
-      v-model="endereco"
-      :validation-messages="{
-        required: 'Campo obrigatório.',
-        min: 'Endereço inválido.',
-      }"
-    />
+      <FormulateInput
+        type="text"
+        label="Endereço *"
+        name="endereco"
+        validation="required|min:3"
+        v-model="endereco"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min: 'Endereço inválido.',
+        }"
+      />
 
-    <FormulateInput
-      type="text"
-      label="Número *"
-      name="numero"
-      validation="required"
-      v-model="numero"
-      :validation-messages="{
-        required: 'Campo obrigatório.',
-      }"
-    />
+      <FormulateInput
+        type="text"
+        label="Número *"
+        name="numero"
+        validation="required"
+        v-model="numero"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+        }"
+      />
 
-    <FormulateInput
-      type="text"
-      label="Complemento"
-      name="complemento"
-      validation="min:3"
-      v-model="complemento"
-      :validation-messages="{
-        min: 'Campo deve conter ao menos 3 letras.',
-      }"
-    />
+      <FormulateInput
+        type="text"
+        label="Complemento"
+        name="complemento"
+        validation="min:3"
+        v-model="complemento"
+        :validation-messages="{
+          min: 'Campo deve conter ao menos 3 letras.',
+        }"
+      />
 
-    <FormulateInput
-      type="text"
-      label="Bairro *"
-      name="bairro"
-      validation="required|min:3"
-      v-model="bairro"
-      :validation-messages="{
-        required: 'Campo obrigatório.',
-        min: 'Bairro inválido.',
-      }"
-    />
+      <FormulateInput
+        type="text"
+        label="Bairro *"
+        name="bairro"
+        validation="required|min:3"
+        v-model="bairro"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min: 'Bairro inválido.',
+        }"
+      />
 
-    <FormulateInput
-      type="select"
-      label="Estado *"
-      name="estado"
-      validation="required"
-      :change="puxarCidades(estado)"
-      :options="estados.map((value) => ({ label: value, value }))"
-      v-model="estado"
-      :validation-messages="{
-        required: 'Campo obrigatório.',
-      }"
-    />
+      <FormulateInput
+        type="select"
+        label="Estado *"
+        name="estado"
+        validation="required"
+        :change="puxarCidades(estado)"
+        :options="estados.map((value) => ({ label: value, value }))"
+        v-model="estado"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+        }"
+      />
 
-    <FormulateInput
-      type="text"
-      label="Cidade *"
-      name="cidade"
-      validation="required|min:3"
-      v-model="cidade"
-      :validation-messages="{
-        required: 'Campo obrigatório.',
-        min: 'Cidade inválida.',
-      }"
-    />
+      <FormulateInput
+        type="text"
+        label="Cidade *"
+        name="cidade"
+        validation="required|min:3"
+        v-model="cidade"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+          min: 'Cidade inválida.',
+        }"
+      />
+    </div>
   </form>
 </template>
 
@@ -187,6 +190,7 @@ export default {
     return {
       estados: [],
       cidades: [],
+      erroCep: "",
     };
   },
   computed: {
@@ -231,13 +235,17 @@ export default {
     },
     preencherCep() {
       const cep = this.cep.replace(/\D/g, "");
-      if (cep?.length === 8) {
-        getCep(cep).then((response) => {
-          this.endereco = response.data.logradouro;
-          this.bairro = response.data.bairro;
-          this.estado = response.data.uf;
-          this.cidade = response.data.localidade;
-        });
+      if (cep.length === 8) {
+        try {
+          getCep(cep).then((response) => {
+            this.endereco = response.data.logradouro;
+            this.bairro = response.data.bairro;
+            this.estado = response.data.uf;
+            this.cidade = response.data.localidade;
+          });
+        } catch (error) {
+          this.erroCep = "Cep não encontrado";
+        }
       }
     },
   },
@@ -247,4 +255,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>

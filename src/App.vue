@@ -65,9 +65,28 @@ form .formulate-input {
   margin-bottom: 0.875rem;
 }
 
+.container .formulate-input[data-classification="text"] input {
+  width: 20vw;
+}
+
+.container .formulate-input[data-classification="select"] select {
+  width: 20vw;
+}
+
+.wizard-header {
+  display: none;
+}
+
 .formulate-input-element input:disabled {
   opacity: 0.3;
   cursor: not-allowed;
+}
+
+.formulate-input-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .wizard-tab-content {

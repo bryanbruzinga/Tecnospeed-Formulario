@@ -6,9 +6,10 @@
     backButtonText="Voltar"
     finishButtonText="Finalizar"
     color="var(--primary-color)"
+    @on-validate="mergePartialModels"
   >
     <tab-content title="Dados da organização">
-      <FirstStep ref="step1" @on-validate="mergePartialModels" />
+      <FirstStep ref="step1" :before-change="() => validateStep('step1')" />
     </tab-content>
 
     <tab-content title="Informações adicionais da organização">
@@ -53,14 +54,12 @@ export default {
       return isValid;
     },
     validateStep(step) {
-      if (this.$refs[step].$v.formFields.$invalid === true) {
+      if (this.$refs[step].$store.formFields.$invalid === true) {
         return false;
       }
     },
   },
 };
-
-//:before-change="() => validateStep('step1')"
 </script>
 
 <style></style>
