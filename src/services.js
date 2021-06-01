@@ -9,13 +9,3 @@ export function getStates() {
     "https://servicodados.ibge.gov.br/api/v1/localidades/estados"
   );
 }
-
-export function getCities(uf) {
-  return axios.get(
-    `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/distritos`
-  );
-}
-
-export function validateCNPJ(cnpj) {
-  return axios.get(`https://www.receitaws.com.br/v1/cnpj/${cnpj}`);
-}

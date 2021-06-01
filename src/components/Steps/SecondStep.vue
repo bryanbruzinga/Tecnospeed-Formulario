@@ -54,7 +54,7 @@
           type="checkbox"
           label="Estado onde possui clientes *"
           name="estadosDosClientes"
-          :options="estados.map((estado) => ({ label: estado, estado }))"
+          :options="estados.map((value) => ({ label: value, value }))"
           validation="required"
           v-model="estadosCliente"
           :validation-messages="{
@@ -102,7 +102,7 @@
 
         <FormulateInput
           type="number"
-          label="Número de funcionários *"
+          label="Número de funcionários"
           name="numeroFuncionarios"
           v-model="numeroFuncionarios"
           validation="number"

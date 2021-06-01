@@ -2,8 +2,8 @@
   <header>
     <img src="@/assets/tecnospeed-white.svg" alt="Tecnospeed" />
     <nav>
-      <button @click="toggleMenu">Menu</button>
-      <ul>
+      <button @click="toggleMenu">Menu <span></span></button>
+      <ul :class="menuAtivo === true ? 'menuAtivo' : ''">
         <li>Soluções</li>
         <li>Institucional</li>
         <li>Suporte</li>
@@ -52,7 +52,6 @@ header ul {
 header nav button {
   display: none;
 }
-
 header ul li {
   list-style: none;
   padding: 1rem;
@@ -76,6 +75,51 @@ header ul li:hover {
   }
   header nav button {
     display: block;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    gap: 0.5rem;
+    background: none;
+    font-size: 1rem;
+    color: #ccc;
+  }
+  span {
+    border-top: 2px solid #000;
+    width: 20px;
+  }
+
+  span::after,
+  span::before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: #000;
+    margin-top: 5px;
+    transition: transform 0.2s ease-in;
+  }
+  ul.menuAtivo {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 5;
+    width: 100%;
+    top: 80px;
+    right: 0;
+    background: var(--primary-color);
+    animation: show-down 0.2s ease-in;
+  }
+}
+
+@keyframes show-down {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 </style>

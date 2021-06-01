@@ -1,20 +1,24 @@
 <template>
-  <form>
+  <form action="">
     <div class="container">
       <FormulateInput
         type="radio"
         :options="{ pessoa: 'Jurídica' }"
-        label="Pessoa"
+        label="Pessoa *"
         name="pessoa"
+        validation="required"
         v-model="pessoa"
+        :validation-messages="{
+          required: 'Campo obrigatório.',
+        }"
       />
 
       <FormulateInput
         type="text"
         label="Razão social *"
         name="razaoSocial"
-        validation="required|min:3"
         v-model="razaoSocial"
+        validation="required|min:3"
         :validation-messages="{
           required: 'Campo obrigatório.',
           min: 'Campo deve conter ao menos 3 letras.',
@@ -133,11 +137,7 @@
         type="text"
         label="Complemento"
         name="complemento"
-        validation="min:3"
         v-model="complemento"
-        :validation-messages="{
-          min: 'Campo deve conter ao menos 3 letras.',
-        }"
       />
 
       <FormulateInput
@@ -157,7 +157,6 @@
         label="Estado *"
         name="estado"
         validation="required"
-        :change="puxarCidades(estado)"
         :options="estados.map((value) => ({ label: value, value }))"
         v-model="estado"
         :validation-messages="{
@@ -181,8 +180,9 @@
 </template>
 
 <script>
-import { getCep, getStates, getCities } from "@/services.js";
+import { getCep, getStates } from "@/services.js";
 import { mapFields } from "@/helpers.js";
+import { required, minLength } from "vuelidate/lib/validators";
 
 export default {
   name: "firstStep",
@@ -192,6 +192,36 @@ export default {
       cidades: [],
       erroCep: "",
     };
+  },
+  validations: {
+    pessoa: { required },
+    razaoSocial: { required, minLength: minLength(3) },
+    nomeFantasia: { required, minLength: minLength(3) },
+    cnpj: { required, minLength: minLength(10) },
+    inscricaoEstadual: { required, minLength: minLength(3) },
+    telefone: { required, minLength: minLength(8) },
+    tipoEmpresa: { required },
+    cep: { required, minLength: minLength(8) },
+    endereco: { required, minLength: minLength(3) },
+    numero: { required },
+    bairro: { required, minLength: minLength(3) },
+    estado: { required },
+    cidade: { required, minLength: minLength(3) },
+    form: [
+      "pessoa",
+      "razaoSocial",
+      "nomeFantasia",
+      "cnpj",
+      "inscricaoEstadual",
+      "telefone",
+      "tipoEmpresa",
+      "cep",
+      "endereco",
+      "numero",
+      "bairro",
+      "estado",
+      "cidade",
+    ],
   },
   computed: {
     ...mapFields({
@@ -216,22 +246,19 @@ export default {
       mutation: "UPDATE_FORMFIELDS",
     }),
   },
+
   methods: {
     puxarEstados() {
-      getStates().then((r) =>
-        r.data.map((item) => {
-          this.estados.push(item.sigla);
-          this.estados.sort();
-        })
-      );
-    },
-    puxarCidades(estado) {
-      getCities(estado).then((r) =>
-        r.data.map((item) => {
-          this.cidades.push(item.nome);
-          this.cidades.sort();
-        })
-      );
+      try {
+        getStates().then((r) =>
+          r.data.map((item) => {
+            this.estados.push(item.sigla);
+            this.estados.sort();
+          })
+        );
+      } catch (error) {
+        console.log(error);
+      }
     },
     preencherCep() {
       const cep = this.cep.replace(/\D/g, "");

@@ -66,11 +66,11 @@ form .formulate-input {
 }
 
 .container .formulate-input[data-classification="text"] input {
-  width: 20vw;
+  width: 20rem;
 }
 
 .container .formulate-input[data-classification="select"] select {
-  width: 20vw;
+  width: 20rem;
 }
 
 .wizard-header {
@@ -107,16 +107,26 @@ form .formulate-input {
   gap: 2rem;
 }
 
-.vue-form-wizard .clearfix:after {
-  display: none;
-}
-
 @media (max-width: 840px) {
   form {
     width: 90vw;
   }
   .vue-form-wizard {
     width: 90vw;
+  }
+}
+
+@media (max-width: 390px) {
+  h1,
+  h2 {
+    font-size: 1.125rem;
+  }
+  .container .formulate-input[data-classification="text"] input {
+    width: 15rem;
+  }
+
+  .container .formulate-input[data-classification="select"] select {
+    width: 15rem;
   }
 }
 </style>
