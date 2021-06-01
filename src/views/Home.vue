@@ -62,11 +62,12 @@ export default {
     FifthStep,
   },
   methods: {
-    validateStep(step) {
-      var refToValidate = this.$refs[step];
-      refToValidate.$v.form.$touch();
-      const isValid = !refToValidate.$v.form.$invalid;
-      return isValid;
+    async validateStep(step) {
+      const refToValidate = this.$refs[step];
+      if (!refToValidate.$v.form.$invalid) {
+        return true;
+      }
+      window.alert("Os campos marcados com * são obrigatórios.");
     },
     onComplete() {
       alert("Formulário finalizado");

@@ -198,7 +198,10 @@ export default {
     razaoSocial: { required, minLength: minLength(3) },
     nomeFantasia: { required, minLength: minLength(3) },
     cnpj: { required, minLength: minLength(10) },
-    inscricaoEstadual: { required, minLength: minLength(3) },
+    inscricaoEstadual: {
+      required,
+      minLength: minLength(3),
+    },
     telefone: { required, minLength: minLength(8) },
     tipoEmpresa: { required },
     cep: { required, minLength: minLength(8) },

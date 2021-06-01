@@ -19,6 +19,7 @@
         name="usarDadosAdminComoResponsavelFinanceiro"
         v-model="usarDadosAdminComoResponsavelFinanceiro"
         label="Desejo usar os dados do administrador para preencher estes campos."
+        @change="populateFinancialResponsibleData"
       />
 
       <FormulateInput
@@ -64,6 +65,7 @@
         label="Confirme a senha *"
         validation="required"
         name="senhaAdmin|min:6"
+        v-model="confirmarSenhaResponsavelFinanceiro"
         :validation-messages="{
           required: 'Campo obrigatório.',
           min:
@@ -90,15 +92,20 @@
 
 <script>
 import { mapFields } from "@/helpers.js";
-import { required, minLength } from "vuelidate/lib/validators";
+import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
 
 export default {
   name: "fifthStep",
   validations: {
     vencimento: { required },
     nomeResponsavelFinanceiro: { required, minLength: minLength(3) },
-    emailResponsavelFinanceiro: { required, minLength: minLength(3) },
+    emailResponsavelFinanceiro: { required, minLength: minLength(3), email },
     senhaResponsavelFinanceiro: { required, minLength: minLength(6) },
+    confirmarSenhaResponsavelFinanceiro: {
+      required,
+      minLength: minLength(6),
+      sameAs: sameAs("senhaResponsavelFinanceiro"),
+    },
     celularResponsavelFinanceiro: { required, minLength: minLength(3) },
     form: [
       "vencimento",
@@ -106,6 +113,7 @@ export default {
       "nomeResponsavelFinanceiro",
       "emailResponsavelFinanceiro",
       "senhaResponsavelFinanceiro",
+      "confirmarSenhaResponsavelFinanceiro",
       "celularResponsavelFinanceiro",
     ],
   },
@@ -117,6 +125,7 @@ export default {
         "nomeResponsavelFinanceiro",
         "emailResponsavelFinanceiro",
         "senhaResponsavelFinanceiro",
+        "confirmarSenhaResponsavelFinanceiro",
         "celularResponsavelFinanceiro",
       ],
       base: "formFields",
@@ -124,12 +133,12 @@ export default {
     }),
   },
   methods: {
-    populateTechnicianFields() {
+    populateFinancialResponsibleData() {
       if (this.usarDadosAdminComoResponsavelFinanceiro) {
-        this.nomeTecnico = this.nomeAdmin;
-        this.emailTecnico = this.emailAdmin;
-        this.senhaTecnico = this.senhaAdmin;
-        this.telefoneTecnico = this.telefoneAdmin;
+        this.nomeResponsavelFinanceiro = this.$store.state.formFields.nomeAdmin;
+        this.emailResponsavelFinanceiro = this.$store.state.formFields.emailAdmin;
+        this.senhaResponsavelFinanceiro = this.$store.state.formFields.senhaAdmin;
+        this.celularResponsavelFinanceiro = this.$store.state.formFields.telefoneAdmin;
       }
     },
   },

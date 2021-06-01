@@ -68,14 +68,14 @@
 
 <script>
 import { mapFields } from "@/helpers.js";
-import { required, minLength } from "vuelidate/lib/validators";
+import { required, minLength, email } from "vuelidate/lib/validators";
 
 export default {
   name: "thirdStep",
   validations: {
     nomeRepresentante: { required, minLength: minLength(3) },
     cpfRepresentante: { required, minLength: minLength(10) },
-    emailRepresentante: { required, minLength: minLength(3) },
+    emailRepresentante: { required, minLength: minLength(3), email },
     dataNascimentoRepresentante: { required },
     telefoneRepresentante: { required, minLength: minLength(3) },
     form: [

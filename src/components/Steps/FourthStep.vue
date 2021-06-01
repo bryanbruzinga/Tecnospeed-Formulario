@@ -75,6 +75,7 @@
           name="usarDadosAdmin"
           label="Desejo usar os dados do administrador para preencher estes campos."
           v-model="usarDadosAdmin"
+          @change="populateTechnicianFields"
         />
 
         <FormulateInput
@@ -146,17 +147,17 @@
 
 <script>
 import { mapFields } from "@/helpers.js";
-import { required, minLength } from "vuelidate/lib/validators";
+import { required, minLength, email } from "vuelidate/lib/validators";
 
 export default {
   name: "FourthStep",
   validations: {
     nomeAdmin: { required, minLength: minLength(3) },
-    emailAdmin: { required, minLength: minLength(3) },
+    emailAdmin: { required, minLength: minLength(3), email },
     senhaAdmin: { required, minLength: minLength(6) },
     telefoneAdmin: { required, minLength: minLength(3) },
     nomeTecnico: { required, minLength: minLength(3) },
-    emailTecnico: { required, minLength: minLength(3) },
+    emailTecnico: { required, minLength: minLength(3), email },
     senhaTecnico: { required, minLength: minLength(6) },
     telefoneTecnico: { required, minLength: minLength(3) },
     form: [
