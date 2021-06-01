@@ -32,8 +32,7 @@
           label="Senha *"
           validation="required|min:6"
           name="senhaAdmin"
-          v-model="senhaAConfirmarAdmin1"
-          @blur="checkPassword"
+          v-model="senhaAdmin"
           :validation-messages="{
             required: 'Campo obrigatório.',
             min:
@@ -46,8 +45,6 @@
           label="Confirme a senha *"
           validation="required|min:6"
           name="senhaAdmin"
-          v-model="senhaAConfirmarAdmin2"
-          @blur="checkPassword"
           :validation-messages="{
             required: 'Campo obrigatório.',
             min:
@@ -109,7 +106,7 @@
           label="Senha *"
           validation="required|min:6"
           name="senhaTecnico"
-          v-model="senhaAConfirmarTecnico1"
+          v-model="senhaTecnico"
           :validation-messages="{
             required: 'Campo obrigatório.',
             min:
@@ -120,9 +117,8 @@
         <FormulateInput
           type="password"
           label="Confirme a senha *"
-          validation="required|matches:senhaAConfirmarTecnico1"
+          validation="required"
           name="senhaTecnico"
-          v-model="senhaAConfirmarTecnico2"
           :validation-messages="{
             required: 'Campo obrigatório.',
             min:
@@ -150,16 +146,29 @@
 
 <script>
 import { mapFields } from "@/helpers.js";
+import { required, minLength } from "vuelidate/lib/validators";
 
 export default {
   name: "FourthStep",
-  data() {
-    return {
-      senhaAConfirmarTecnico2: "",
-      senhaAConfirmarTecnico1: "",
-      senhaAConfirmarAdmin2: "",
-      senhaAConfirmarAdmin1: "",
-    };
+  validations: {
+    nomeAdmin: { required, minLength: minLength(3) },
+    emailAdmin: { required, minLength: minLength(3) },
+    senhaAdmin: { required, minLength: minLength(6) },
+    telefoneAdmin: { required, minLength: minLength(3) },
+    nomeTecnico: { required, minLength: minLength(3) },
+    emailTecnico: { required, minLength: minLength(3) },
+    senhaTecnico: { required, minLength: minLength(6) },
+    telefoneTecnico: { required, minLength: minLength(3) },
+    form: [
+      "nomeAdmin",
+      "emailAdmin",
+      "senhaAdmin",
+      "telefoneAdmin",
+      "nomeTecnico",
+      "emailTecnico",
+      "senhaTecnico",
+      "telefoneTecnico",
+    ],
   },
   computed: {
     ...mapFields({
@@ -185,11 +194,6 @@ export default {
         this.emailTecnico = this.emailAdmin;
         this.senhaTecnico = this.senhaAdmin;
         this.telefoneTecnico = this.telefoneAdmin;
-      }
-    },
-    checkPassword(senha1, senha2) {
-      if (senha1 === senha2) {
-        this.senhaAdmin = senha1;
       }
     },
   },

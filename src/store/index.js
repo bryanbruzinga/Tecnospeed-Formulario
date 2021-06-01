@@ -45,6 +45,7 @@ export default new Vuex.Store({
       senhaTecnico: "",
       telefoneTecnico: "",
       vencimento: "",
+      usarDadosAdminComoResponsavelFinanceiro: false,
       nomeResponsavelFinanceiro: "",
       emailResponsavelFinanceiro: "",
       senhaResponsavelFinanceiro: "",

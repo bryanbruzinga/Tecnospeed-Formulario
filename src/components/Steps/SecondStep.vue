@@ -115,6 +115,7 @@
 
 <script>
 import { mapFields } from "@/helpers.js";
+import { required } from "vuelidate/lib/validators";
 
 export default {
   name: "secondStep",
@@ -151,6 +152,24 @@ export default {
         "TO",
       ],
     };
+  },
+  validations: {
+    linguagens: { required },
+    outrasLinguagens: "",
+    ramoAtividade: { required },
+    estadosCliente: { required },
+    formasComercioERP: { required },
+    outrasFormasComercioERP: "",
+    quantidadeClientes: { required },
+    form: [
+      "linguagens",
+      "outrasLinguagens",
+      "ramoAtividade",
+      "estadosCliente",
+      "formasComercioERP",
+      "outrasFormasComercioERP",
+      "quantidadeClientes",
+    ],
   },
   computed: {
     ...mapFields({

@@ -16,8 +16,8 @@
 
       <FormulateInput
         type="checkbox"
-        name="usarDadosAdmin"
-        v-model="usarDadosAdmin"
+        name="usarDadosAdminComoResponsavelFinanceiro"
+        v-model="usarDadosAdminComoResponsavelFinanceiro"
         label="Desejo usar os dados do administrador para preencher estes campos."
       />
 
@@ -90,22 +90,30 @@
 
 <script>
 import { mapFields } from "@/helpers.js";
+import { required, minLength } from "vuelidate/lib/validators";
 
 export default {
   name: "fifthStep",
-  data() {
-    return {
-      senhaAConfirmarTecnico2: "",
-      senhaAConfirmarTecnico1: "",
-      senhaAConfirmarAdmin2: "",
-      senhaAConfirmarAdmin1: "",
-    };
+  validations: {
+    vencimento: { required },
+    nomeResponsavelFinanceiro: { required, minLength: minLength(3) },
+    emailResponsavelFinanceiro: { required, minLength: minLength(3) },
+    senhaResponsavelFinanceiro: { required, minLength: minLength(6) },
+    celularResponsavelFinanceiro: { required, minLength: minLength(3) },
+    form: [
+      "vencimento",
+      "usarDadosAdminComoResponsavelFinanceiro",
+      "nomeResponsavelFinanceiro",
+      "emailResponsavelFinanceiro",
+      "senhaResponsavelFinanceiro",
+      "celularResponsavelFinanceiro",
+    ],
   },
   computed: {
     ...mapFields({
       fields: [
         "vencimento",
-        "usarDadosAdmin",
+        "usarDadosAdminComoResponsavelFinanceiro",
         "nomeResponsavelFinanceiro",
         "emailResponsavelFinanceiro",
         "senhaResponsavelFinanceiro",
@@ -117,16 +125,11 @@ export default {
   },
   methods: {
     populateTechnicianFields() {
-      if (this.usarDadosAdmin) {
+      if (this.usarDadosAdminComoResponsavelFinanceiro) {
         this.nomeTecnico = this.nomeAdmin;
         this.emailTecnico = this.emailAdmin;
         this.senhaTecnico = this.senhaAdmin;
         this.telefoneTecnico = this.telefoneAdmin;
-      }
-    },
-    checkPassword(senha1, senha2) {
-      if (senha1 === senha2) {
-        this.senhaAdmin = senha1;
       }
     },
   },

@@ -246,7 +246,6 @@ export default {
       mutation: "UPDATE_FORMFIELDS",
     }),
   },
-
   methods: {
     puxarEstados() {
       try {
