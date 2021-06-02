@@ -17,4 +17,4 @@
 
 <p>Com o repositório clonado, acesse a pasta raiz da aplicação com o terminal e execute o comando <code>npm install</code> e aguarde a instalação de todos os pacotes e dependências.</p>
 
-<p>Agora já pode executar a aplicação, ainda na raiz execute o comando no terminal <code>npm run serve</code>, a aplicação rodará na porta 8080, portanto ela deve estar liberada.</p>
+<p>Agora já pode executar a aplicação, ainda na raiz execute o comando no terminal <code>npm run serve</code>, a aplicação rodará na porta 8080, portanto ela deve estar livre.</p>
