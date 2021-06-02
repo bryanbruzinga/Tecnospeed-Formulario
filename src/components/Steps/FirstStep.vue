@@ -77,7 +77,11 @@
       />
       <span
         class="help-block"
-        v-if="$v.inscricaoEstadual.$error && !$v.inscricaoEstadual.required"
+        v-if="
+          $v.inscricaoEstadual.$error &&
+            !$v.inscricaoEstadual.required &&
+            !isento
+        "
         >Campo obrigatório</span
       >
 
@@ -219,7 +223,6 @@ export default {
     return {
       estados: [],
       cidades: [],
-      erroCep: "",
     };
   },
   validations: {
@@ -302,7 +305,7 @@ export default {
             this.cidade = response.data.localidade;
           });
         } catch (error) {
-          this.erroCep = "Cep não encontrado";
+          console.log(error);
         }
       }
     },
