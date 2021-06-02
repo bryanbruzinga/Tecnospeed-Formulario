@@ -7,7 +7,17 @@
 
 <h2>Tecologias Usadas</h2>
 
-<p>Contruído em VueJs 2, a aplicação conta com tecnologias como Vuex para gerenciamento de estados, Axios para requisições, e libs como Vue Formulate para facilitar a criação de formulários, Vue Form Wizard que serviu para facilitar a criação de formulários de etapa e Vuelidate para lidar com validações.</p>
+<p>Contruído em VueJs 2, a aplicação conta com as seguintes tecnologias:</p>
+<ul>
+  <li>Vuex</li>
+  <li>Vue Formulate</li>
+  <li>Vue Form Wizard</li>
+  <li>Vuelidate</li>
+</ul>
+<p>Vuex provê o SSOT (Single Source Of Truth) que é basicamente um local onde as variáveis estão acessíveis a qualquer parte da aplicação. é lá também onde estão os mutations que são responsáveis por mutar esses estados.</p>
+<p>Vue Formulate é uma lib para escrita de formulários, geralmente os formulários sao bem verbosos e a proposta seria reduzir essa verbosidade passando somente um elemento que fica responsável por receber parâmetros como label, name, etc, o que um formulário comum contém.</p>
+<p><Vue Form Wizard é a lib responsável pelo formulário de etapa, ele envolve cada componente de formulário separando-o de acordo com o gosto do desenvolvedor ou necessidade do projeto./p>
+  <p>Vuelidate é a lib responsável pela validação do formulário, possui uma sintaxe própria pouco intuitiva ao meu ver, mas a documentação vem com bons detalhes de uso.</p>
 
 <h2>Como executar localmente</h2>
 
