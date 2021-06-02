@@ -65,6 +65,10 @@ form .formulate-input {
   margin-bottom: 0.875rem;
 }
 
+.help-block {
+  color: red;
+}
+
 .container .formulate-input[data-classification="text"] input {
   width: 20rem;
 }

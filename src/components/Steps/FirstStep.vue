@@ -6,63 +6,80 @@
         :options="{ pessoa: 'Jurídica' }"
         label="Pessoa *"
         name="pessoa"
-        validation="required"
         v-model="pessoa"
-        :validation-messages="{
-          required: 'Campo obrigatório.',
-        }"
       />
+      <span class="help-block" v-if="$v.pessoa.$error && !$v.pessoa.required"
+        >Campo obrigatório</span
+      >
 
       <FormulateInput
         type="text"
         label="Razão social *"
         name="razaoSocial"
         v-model="razaoSocial"
-        validation="required|min:3"
+        validation="min:3"
         :validation-messages="{
-          required: 'Campo obrigatório.',
           min: 'Campo deve conter ao menos 3 letras.',
         }"
       />
+      <span
+        class="help-block"
+        v-if="$v.razaoSocial.$error && !$v.razaoSocial.required"
+        >Campo obrigatório.</span
+      >
 
       <FormulateInput
         type="text"
         label="Nome fantasia *"
         name="nomeFantasia"
-        validation="required|min:3"
+        validation="min:3"
         v-model="nomeFantasia"
         :validation-messages="{
-          required: 'Campo obrigatório.',
           min: 'Campo deve conter ao menos 3 letras.',
         }"
       />
+      <span
+        class="help-block"
+        v-if="$v.nomeFantasia.$error && !$v.nomeFantasia.required"
+        >Campo obrigatório.</span
+      >
 
       <FormulateInput
         type="text"
         label="CNPJ *"
         name="cnpj"
-        validation="required|min:14|number"
+        validation="min:14|number"
         v-model="cnpj"
         :validation-messages="{
-          required: 'Campo obrigatório.',
           min: 'Campo deve conter ao menos 14 números.',
           number: 'Somente números',
         }"
       />
+      <span
+        class="help-block"
+        v-if="
+          $v.cnpj.$error && $v.nomeFantasia.$error && !$v.nomeFantasia.required
+        "
+        >Campo requerido</span
+      >
 
       <FormulateInput
         type="text"
         label="Inscrição estadual *"
         name="inscricaoEstadual"
-        validation="required|min:3"
+        validation="min:3"
         :disabled="isento"
         v-model="inscricaoEstadual"
         validation-name="Inscrição Estadual"
         :validation-messages="{
-          required: 'Campo obrigatório.',
           min: 'Campo deve conter ao menos 3 letras.',
         }"
       />
+      <span
+        class="help-block"
+        v-if="$v.inscricaoEstadual.$error && !$v.inscricaoEstadual.required"
+        >Campo obrigatório</span
+      >
 
       <FormulateInput type="checkbox" label="Isento" v-model="isento" />
 
@@ -70,14 +87,18 @@
         type="text"
         label="Telefone *"
         name="telefone"
-        validation="required|min:10|number"
+        validation="min:8|number"
         v-model="telefone"
         :validation-messages="{
-          required: 'Campo obrigatório.',
           min: 'Telefone Inválido.',
           number: 'Somente números',
         }"
       />
+      <span
+        class="help-block"
+        v-if="$v.telefone.$error && !$v.telefone.required"
+        >Campo obrigatório</span
+      >
 
       <FormulateInput
         type="radio"
@@ -88,50 +109,55 @@
         }"
         label="Tipo empresa"
         name="tipoEmpresa"
-        validation="required"
         v-model="tipoEmpresa"
-        :validation-messages="{
-          required: 'Campo obrigatório.',
-        }"
       />
+      <span
+        class="help-block"
+        v-if="$v.tipoEmpresa.$error && !$v.tipoEmpresa.required"
+        >Campo obrigatório</span
+      >
 
       <FormulateInput
         type="text"
         label="CEP *"
         name="cep"
-        validation="required|min:8|number"
+        validation="min:8|number"
         @keyup="preencherCep"
         v-model="cep"
         :validation-messages="{
-          required: 'Campo obrigatório.',
           min: 'Cep inválido.',
           number: 'Somente números',
         }"
       />
-      <span>{{ erroCep }}</span>
+      <span class="help-block" v-if="$v.cep.$error && !$v.cep.required"
+        >Campo obrigatório</span
+      >
 
       <FormulateInput
         type="text"
         label="Endereço *"
         name="endereco"
-        validation="required|min:3"
+        validation="min:3"
         v-model="endereco"
         :validation-messages="{
-          required: 'Campo obrigatório.',
           min: 'Endereço inválido.',
         }"
       />
+      <span
+        class="help-block"
+        v-if="$v.endereco.$error && !$v.endereco.required"
+        >Campo obrigatório</span
+      >
 
       <FormulateInput
         type="text"
         label="Número *"
         name="numero"
-        validation="required"
         v-model="numero"
-        :validation-messages="{
-          required: 'Campo obrigatório.',
-        }"
       />
+      <span class="help-block" v-if="$v.numero.$error && !$v.numero.required"
+        >Campo obrigatório</span
+      >
 
       <FormulateInput
         type="text"
@@ -144,37 +170,40 @@
         type="text"
         label="Bairro *"
         name="bairro"
-        validation="required|min:3"
+        validation="min:3"
         v-model="bairro"
         :validation-messages="{
-          required: 'Campo obrigatório.',
           min: 'Bairro inválido.',
         }"
       />
+      <span class="help-block" v-if="$v.bairro.$error && !$v.bairro.required"
+        >Campo obrigatório</span
+      >
 
       <FormulateInput
         type="select"
         label="Estado *"
         name="estado"
-        validation="required"
         :options="estados.map((value) => ({ label: value, value }))"
         v-model="estado"
-        :validation-messages="{
-          required: 'Campo obrigatório.',
-        }"
       />
+      <span class="help-block" v-if="$v.estado.$error && !$v.estado.required"
+        >Campo obrigatório</span
+      >
 
       <FormulateInput
         type="text"
         label="Cidade *"
         name="cidade"
-        validation="required|min:3"
+        validation="min:3"
         v-model="cidade"
         :validation-messages="{
-          required: 'Campo obrigatório.',
           min: 'Cidade inválida.',
         }"
       />
+      <span class="help-block" v-if="$v.cidade.$error && !$v.cidade.required"
+        >Campo obrigatório</span
+      >
     </div>
   </form>
 </template>

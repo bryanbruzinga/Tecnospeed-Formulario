@@ -4,64 +4,85 @@
       <FormulateInput
         type="text"
         label="Nome completo *"
-        validation="required|min:3"
+        validation="min:3"
         name="nomeRepresentante"
         v-model="nomeRepresentante"
         :validation-messages="{
-          required: 'Campo obrigatório.',
           min: 'Nome deve conter ao menos 3 letras.',
         }"
       />
+      <span
+        class="help-block"
+        v-if="$v.nomeRepresentante.$error && !$v.nomeRepresentante.required"
+        >Campo obrigatório</span
+      >
 
       <FormulateInput
         type="text"
         label="CPF *"
-        validation="required|min:10|number"
+        validation="min:10|number"
         name="cpfRepresentante"
         v-model="cpfRepresentante"
         :validation-messages="{
-          required: 'Campo obrigatório.',
           min: 'CPF inválido.',
           number: 'Somente números.',
         }"
       />
+      <span
+        class="help-block"
+        v-if="$v.cpfRepresentante.$error && !$v.cpfRepresentante.required"
+        >Campo obrigatório</span
+      >
 
       <FormulateInput
         type="email"
         label="Email *"
-        validation="^required|email"
+        validation="^email"
         name="emailRepresentante"
         v-model="emailRepresentante"
         :validation-messages="{
-          required: 'Campo obrigatório.',
           email: 'Não é um email válido.',
         }"
       />
+      <span
+        class="help-block"
+        v-if="$v.emailRepresentante.$error && !$v.emailRepresentante.required"
+        >Campo obrigatório</span
+      >
 
       <FormulateInput
         type="date"
         label="Data de nascimento *"
-        validation="required|date"
         name="dataNascimentoRepresentante"
         v-model="dataNascimentoRepresentante"
-        :validation-messages="{
-          required: 'Campo obrigatório.',
-          date: 'Data inválida.',
-        }"
       />
+      <span
+        class="help-block"
+        v-if="
+          $v.dataNascimentoRepresentante.$error &&
+            !$v.dataNascimentoRepresentante.required
+        "
+        >Campo obrigatório</span
+      >
 
       <FormulateInput
         type="text"
         label="Telefone *"
-        validation="required|min:8|number"
+        validation="min:8|number"
         name="telefoneRepresentante"
         v-model="telefoneRepresentante"
         :validation-messages="{
-          required: 'Campo obrigatório.',
           min: 'Telefone inválido.',
           number: 'Somente números.',
         }"
       />
+      <span
+        class="help-block"
+        v-if="
+          $v.telefoneRepresentante.$error && !$v.telefoneRepresentante.required
+        "
+        >Campo obrigatório</span
+      >
     </div>
   </form>
 </template>

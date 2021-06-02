@@ -19,12 +19,13 @@
             'Nenhuma',
           ]"
           name="linguagensProgramacao"
-          validation="required"
           v-model="linguagens"
-          :validation-messages="{
-            required: 'Campo obrigatório.',
-          }"
         />
+        <span
+          class="help-block"
+          v-if="$v.linguagens.$error && !$v.linguagens.required"
+          >Campo obrigatório</span
+        >
 
         <FormulateInput
           type="text"
@@ -45,34 +46,39 @@
             'Transporte',
             'Serviço',
           ]"
-          validation="required"
           v-model="ramoAtividade"
-          :validation-messages="{ required: 'Campo obrigatório.' }"
         />
+        <span
+          class="help-block"
+          v-if="$v.ramoAtividade.$error && !$v.ramoAtividade.required"
+          >Campo obrigatório</span
+        >
 
         <FormulateInput
           type="checkbox"
           label="Estado onde possui clientes *"
-          name="estadosDosClientes"
+          name="estadosCliente"
           :options="estados.map((value) => ({ label: value, value }))"
-          validation="required"
           v-model="estadosCliente"
-          :validation-messages="{
-            required: 'Campo obrigatório.',
-          }"
         />
+        <span
+          class="help-block"
+          v-if="$v.estadosCliente.$error && !$v.estadosCliente.required"
+          >Campo obrigatório</span
+        >
 
         <FormulateInput
           type="checkbox"
           label="Formas comercialização ERP *"
           name="formasComercioERP"
           :options="['Locação', 'Vendas', 'Uso Interno', 'Outro', 'Nenhuma']"
-          validation="required"
           v-model="formasComercioERP"
-          :validation-messages="{
-            required: 'Campo obrigatório.',
-          }"
         />
+        <span
+          class="help-block"
+          v-if="$v.formasComercioERP.$error && !$v.formasComercioERP.required"
+          >Campo obrigatório</span
+        >
 
         <FormulateInput
           type="text"
@@ -92,13 +98,17 @@
           type="number"
           label="Quantidade de clientes *"
           name="quantidadeClientes"
-          validation="required|number"
+          validation="number"
           v-model="quantidadeClientes"
           :validation-messages="{
-            required: 'Campo obrigatório.',
             number: 'Somente números',
           }"
         />
+        <span
+          class="help-block"
+          v-if="$v.quantidadeClientes.$error && !$v.quantidadeClientes.required"
+          >Campo obrigatório</span
+        >
 
         <FormulateInput
           type="number"
@@ -155,19 +165,15 @@ export default {
   },
   validations: {
     linguagens: { required },
-    outrasLinguagens: "",
     ramoAtividade: { required },
     estadosCliente: { required },
     formasComercioERP: { required },
-    outrasFormasComercioERP: "",
     quantidadeClientes: { required },
     form: [
       "linguagens",
-      "outrasLinguagens",
       "ramoAtividade",
       "estadosCliente",
       "formasComercioERP",
-      "outrasFormasComercioERP",
       "quantidadeClientes",
     ],
   },
