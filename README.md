@@ -4,6 +4,7 @@
 <h2>Como funciona?</h2>
 
 <p>Consiste de vários formulários separados em partes, sendo ao todo 5 partes, cada campo coleta uma quantidade de informações que juntas formam um objeto com dezenas de campos sobre o usuário cadastrado, nada muito diferente de um formulário comum.</p>
+<p>O link para a deploy está <a href="https://tecnovue.vercel.app/">aqui</a>.</p>
 
 <h2>Tecologias Usadas</h2>
 
